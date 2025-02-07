@@ -17,6 +17,4 @@ const fibonacci = (n) => {
     return res;
 }
 
-console.log(fibonacci(10))
-
-export { fibonacci }
+export { fibonacci };
