@@ -9,11 +9,10 @@ class EnderecoService {
     static registerEndereco = async (body) => {
         let ende = new endereco(body);
         const resEndereco = await ende.save();
-
-       
-
         return resEndereco;
     }
+
+   
 }
 
 export default EnderecoService;
