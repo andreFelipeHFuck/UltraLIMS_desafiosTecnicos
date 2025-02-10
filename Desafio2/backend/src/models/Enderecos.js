@@ -31,6 +31,6 @@ const enderecosSchema = new mongoose.Schema(
     }
 );
 
-const endereco = mongoose.model('Enderecos', enderecosSchema);
+const endereco = mongoose.model('enderecos', enderecosSchema);
 
 export default endereco;

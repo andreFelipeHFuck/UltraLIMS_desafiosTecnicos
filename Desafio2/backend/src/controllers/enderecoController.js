@@ -1,13 +1,21 @@
-import getEndereco from '../services/viaCepApi.js';
-
+import EnderecoService from '../services/EnderecoService.js';
+import { getEndereco, filtersEndereco } from '../services/viaCepApi.js';
 
 class EnderecoController {
     static registerEndereco = async (req, res, next) => {
         try {
-            const cep = req.body.cep;
-            const endereco = await getEndereco(cep);
+            const cep = req.body.cep.trim();
+            let endereco = await EnderecoService.findByCep(cep);
 
-            res.status(201).send(endereco);
+            if(endereco.length > 0)
+                return res.status(201).send(
+                       filtersEndereco(endereco[0])
+                );
+
+            endereco = await getEndereco(cep);
+            EnderecoService.registerEndereco(endereco);
+
+            return res.status(201).send(endereco);
         }catch(error) {
             next(error);
         }
